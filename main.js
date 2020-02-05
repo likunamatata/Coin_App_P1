@@ -2,10 +2,12 @@ const button = document.querySelector("button");
 const dropdown = document.querySelector("select");
 let selected_currency;
 const base_url = `https://api.coingecko.com/api/v3/coins`;
-
+const dashboard = document.querySelector('#dashboard');
+const source = document.querySelector('#source')
 
 
 currency_list = [
+  'Currencies',
   "aed", "ars", "aud", "bch", "bdt", "bhd", "bmd", "bnb", "brl", "btc", "cad", "chf", "clp", "cny",
   "czk", "dkk", "eos", "eth", "eur", "gbp", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "ltc",
   "mmk", "mxn", "myr", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah",
@@ -21,23 +23,48 @@ const currency_dropdown = () => {
 currency_dropdown();
 
 
-//Fields I want to show
+field_list = ['logos', 'names', 'current_prices', 'market_cap',
+  'high_24h', 'low_24h', 'change_24h', 'change_7d', 'change_30d', 'change_1y']; 
 
-//coin description
-let logos = document.querySelector('#logos');
-let abb_names = document.querySelector('#abb_names');
-let names = document.querySelector('#abb_names');;
-//current value
-let current_price = [];
-let market_cap = [];
-//last 24hr price range
-let high_24h = [];
-let low_24h = [];
-//history
-let price_change_percentage_24h = [];
-let price_change_percentage_7d = [];
-let price_change_percentage_30d = [];
-let price_change_percentage_1y = [];
+field_titles = ['Logo', 'Coin', 'Price ($)', 'Market Cap ($B)', 'Last 24h High', 'Last 24h Low',
+  '24h % Change', '7d % Change', '30d % Change', '1y % Change'];
+
+const make_ul = (field_list) => {
+  for (let i = 0; i < field_list.length; i++){
+    let ul = document.createElement('ul');
+    ul.setAttribute('id', field_list[i]);
+    dashboard.appendChild(ul);
+    console.log(ul);
+  }
+} 
+
+make_ul(field_list);
+
+
+/*const make_headers = (field_titles) => {
+  for (let i = 0; i < field_titles.length; i++){
+    let title = document.createElement('a');
+    title.setAttribute('class', 'title');
+    title.innerHTML = `<a>${field_titles[i]}</a>`;
+    dashboard_titles.appendChild(title);
+  }
+}
+
+make_headers(field_titles);
+*/
+
+const logos = document.querySelector('#logos');
+const  names = document.querySelector('#names');
+const current_prices = document.querySelector('#current_prices');
+const market_cap = document.querySelector('#market_cap');
+const high_24h = document.querySelector('#high_24h');
+const low_24 = document.querySelector('#low_24h');
+const change_24h = document.querySelector('#change_24h');
+const change_7d = document.querySelector('#change_7d');
+const change_30d = document.querySelector('#change_30d');
+const change_1y = document.querySelector('#change_1y');
+
+ul_elements = [logos, names, current_prices, market_cap, high_24h, low_24h, change_24h, change_7d, change_30d, change_1y];
 
 
 const pop_column = (column, value) => {
@@ -46,49 +73,86 @@ const pop_column = (column, value) => {
   column.appendChild(new_element);
 }
 
+const percentage = (number) => {
+  number = `${number.toFixed()} %`;
+  return number;
+}
 
+
+const empty_ul = (columns,titles) => {
+  for (let i = 0; i < columns.length; i++){
+    columns[i].innerHTML = '';
+
+    let title = document.createElement('li');
+    title.setAttribute('class', 'title');
+    title.innerHTML = `<a>${field_titles[i]}</a>`;
+    columns[i].appendChild(title);
+    }
+}
+
+let n = 0;
 
 //Fields populated for a given currency
 const pop_dashboard = async (currency) => {
+
+//code to remove all elements except the first one from all unordered lists
+
   let response = await axios.get(`${base_url}`)
     .then(response => {
+    
+      //give credit to CoinGecko
+      source.innerText = `Data from CoinGecko \ud83e\udd8e`;
+      
+    //refresh the columns
+      empty_ul(ul_elements, field_titles);
+    
+    //populate the columns
       for (let i = 0; i < response.data.length; i++) {
         //coin description
         let logo_value = response.data[i].image.thumb;
         let logo = document.createElement('li');
         logo.innerHTML = `<img src=${logo_value}>`;
         logos.appendChild(logo);
-        
 
-        let abb_name_value = response.data[i].symbol;
-        pop_column(abb_names, abb_name_value);
-
-
-
-
-
-
-
-        name.push(response.data[i].name);
+        let name_value = response.data[i].name;
+        pop_column(names, name_value);
 
         //lower case currency because the dropdown is all caps
         let cur = currency.toLowerCase();
         let mkt_data = response.data[i].market_data;
 
         //current value
-        current_price.push(mkt_data.current_price[cur]);
-        market_cap.push(mkt_data.market_cap[cur]);
+        let price = mkt_data.current_price[cur];
+        let price_value = Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(price);
+        pop_column(current_prices, price_value);
+       
 
+        let cap = (mkt_data.market_cap[cur])/1000000000;
+        let market_cap_value = Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(cap);
+        pop_column(market_cap, market_cap_value);
+     
         //last 24hr price range
-        high_24h.push(mkt_data.high_24h[cur]);
-        low_24h.push(mkt_data.low_24h[cur]);
+        let h24 = mkt_data.high_24h[cur];
+        let h24_value = Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(h24);
+        pop_column(high_24h, h24_value);
 
-        //history
-        price_change_percentage_24h.push(mkt_data.price_change_percentage_24h);
-        price_change_percentage_7d.push(mkt_data.price_change_percentage_7d);
-        price_change_percentage_30d.push(mkt_data.price_change_percentage_30d);
-        price_change_percentage_1y.push(mkt_data.price_change_percentage_1y);
+        let l24 = mkt_data.low_24h[cur];
+        let l24_value = Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(l24);
+        pop_column(low_24h, l24_value);
+        
 
+        //history of % change
+        let change24h_value = percentage(mkt_data.price_change_percentage_24h);
+        pop_column(change_24h, change24h_value);
+
+        let change7d_value = percentage(mkt_data.price_change_percentage_7d);
+        pop_column(change_7d, change7d_value);
+
+        let change30d_value = percentage(mkt_data.price_change_percentage_30d);
+        pop_column(change_30d, change30d_value);
+
+        let change1y_value = percentage(mkt_data.price_change_percentage_1y);
+        pop_column(change_1y, change1y_value);
       }
     });
 }   
@@ -101,5 +165,4 @@ dropdown.addEventListener('change', () => {
   
 )
 
-console.log(logos);
 

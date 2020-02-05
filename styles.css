@@ -1,21 +1,69 @@
+:root {
+  --main-color:#ded5ef;
+}
+
+body *{
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  text-align: center;
+  background-color: var(--main-color);
+}
+
 header {
   color: black;
+  font-family: 'Molle', cursive;
 }
 
-body{
+h1{
+  font-size: 5em;
+  margin: 0;
+  padding: 0;
+}
+
+header > a {
+  font-size: 0.1em;
+  margin: 0;
+  padding: 0;
+  display: block;
+  text-align: right;
+}
+
+main{
   font-size: 10px;
+  font-family: 'Changa', sans-serif;
 }
 
-footer {
-  width: 100%;
+#get_started{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+select{
+  width: 10em;
+}
+
+#source{
+  display: block;
+  text-align: right;
+  padding: 1em;
+  margin: 0;
+
+}
+
 
 #dashboard{
   display:flex;
   flex-direction: row;
+  width: 100%;
+  align-items: stretch;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
 }
 
 ul{
@@ -23,11 +71,35 @@ ul{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0px;
   padding: 0px;
 }
 
 li{
   list-style: none;
+}
+
+#logos > li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.title{
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.1em;
+}
+
+#logos > .title {
+  color: var(--main-color);
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  font-size: 0.5em;
+  padding: 0.2em 0em;
 }
