@@ -3,15 +3,16 @@ const dropdown = document.querySelector("select");
 let selected_currency;
 const base_url = `https://api.coingecko.com/api/v3/coins`;
 const dashboard = document.querySelector('#dashboard');
-const source = document.querySelector('#source')
+const source = document.querySelector('#source');
+const crypto_gym = document.querySelector('#crypto_gym');
 
 
 currency_list = [
-  'Currencies',
-  "aed", "ars", "aud", "bch", "bdt", "bhd", "bmd", "bnb", "brl", "btc", "cad", "chf", "clp", "cny",
-  "czk", "dkk", "eos", "eth", "eur", "gbp", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "ltc",
+  'Currencies', "usd", "eur", "rub", "jpy", "gbp" ,
+  "aed", "ars", "aud", "bdt", "bhd", "bmd", "bnb", "brl", "btc", "cad", "chf", "clp", "cny",
+  "czk", "dkk", "eos", "hkd", "huf", "idr", "ils", "inr", "krw", "kwd", "lkr", "ltc",
   "mmk", "mxn", "myr", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah",
-  "usd", "vef", "vnd", "xag", "xau", "xdr", "xlm", "xrp", "zar"
+  "vef", "vnd", "xag", "xau", "xdr", "xlm", "xrp", "zar"
 ];
 
 const currency_dropdown = () => {
@@ -27,7 +28,7 @@ field_list = ['logos', 'names', 'current_prices', 'market_cap',
   'high_24h', 'low_24h', 'change_24h', 'change_7d', 'change_30d', 'change_1y']; 
 
 field_titles = ['Logo', 'Coin', 'Price ($)', 'Market Cap ($B)', 'Last 24h High', 'Last 24h Low',
-  '24h % Change', '7d % Change', '30d % Change', '1y % Change'];
+  '24h % \u0394', '7d % \u0394', '30d % \u0394', '1y % \u0394'];
 
 const make_ul = (field_list) => {
   for (let i = 0; i < field_list.length; i++){
@@ -157,8 +158,8 @@ const pop_dashboard = async (currency) => {
     });
 }   
 
-
 dropdown.addEventListener('change', () => {
+  dashboard.style.border = '1px solid #cfcfc4';
   selected_currency = dropdown.value;
   pop_dashboard(selected_currency);
 }

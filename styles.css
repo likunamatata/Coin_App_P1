@@ -1,10 +1,13 @@
 :root {
   --main-color:#ded5ef;
+  --my-grey: #cfcfc4;
+  --text-color: black;
 }
 
 body *{
   margin: 0px;
   padding: 0px;
+  font-family: 'Changa', sans-serif;
 }
 
 body {
@@ -13,14 +16,26 @@ body {
 }
 
 header {
-  color: black;
-  font-family: 'Molle', cursive;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: normal;
+}
+
+#get_started {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1{
   font-size: 5em;
   margin: 0;
   padding: 0;
+  font-family: 'Molle', cursive;
 }
 
 header > a {
@@ -33,18 +48,13 @@ header > a {
 
 main{
   font-size: 10px;
-  font-family: 'Changa', sans-serif;
 }
 
-#get_started{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 select{
-  width: 10em;
+  /* width: 10em; */
+  background-color: var(--my-grey);
+  text-align: center;
 }
 
 #source{
@@ -52,18 +62,21 @@ select{
   text-align: right;
   padding: 1em;
   margin: 0;
-
 }
 
 
 #dashboard{
   display:flex;
   flex-direction: row;
-  width: 100%;
   align-items: stretch;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin: 0;
   padding: 0;
+}
+
+#crypto_gym{
+  height: 300px;
+  width: 400px;
 }
 
 ul{
@@ -103,3 +116,60 @@ footer {
   font-size: 0.5em;
   padding: 0.2em 0em;
 }
+
+@media (max-width: 600px){
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1{
+    font-size: 3em;
+  }
+
+  #get_started{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+  }
+
+  #dashboard {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 10px 10px 10px 0px;
+  }
+
+  ul {
+  flex: 0 0 auto;
+  padding: 10px;
+  }
+
+  #names {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+  }
+
+  #crypto_gym {
+    width: 70%;
+    height: 70%;
+  }
+
+  #logos {
+    display: none;
+  }
+
+  #source{
+    padding: 0;
+  }
+
+  }
