@@ -1,4 +1,4 @@
-##Coin Tracker##
+##Coin Tracker
 
 The purpose of this web app is to give its users an opportunity to keep an eye on the value performance of
 the more popular crypto currencies. I chose an eye-catching design to stand out from the fluorocent-office-looking financial 
