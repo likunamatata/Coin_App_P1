@@ -7,6 +7,7 @@ CoinGecko API :lizard:. Additional features include the ability to choose a curr
 the user can read the news referencing a crypto coin of their interest. The articles on the second page are provided by NewsAPI :newspaper:.*
 
 
+To quickly check out what the app looks like, you can visit: https://likuna-dev.surge.sh/
 
 
 
