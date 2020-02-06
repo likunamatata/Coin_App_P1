@@ -96,8 +96,6 @@ let n = 0;
 //Fields populated for a given currency
 const pop_dashboard = async (currency) => {
 
-//code to remove all elements except the first one from all unordered lists
-
   let response = await axios.get(`${base_url}`)
     .then(response => {
     
@@ -167,3 +165,75 @@ dropdown.addEventListener('change', () => {
 )
 
 
+//Choose a coin of interest for news
+my_coin = 'bitcoin';
+my_category = 'business';
+today = '2020-01-05';
+
+
+//Get news API
+source_2 = document.querySelector('#source_2');
+my_key = 'f076eb0fae684880a870884a29b6a4ed';
+newsAPI_URL = 'https://newsapi.org/v2/everything?';
+my_language = 'en';
+
+
+//Choose placement
+const news = document.querySelector('.news');
+
+const create_news = (parent, html_tag, className, value, img_src, article_link) => {
+  let element = document.createElement(html_tag);
+  element.setAttribute('class', className);
+  element.innerHTML = value;
+  element.setAttribute('src', img_src);
+  element.setAttribute('href', article_link);
+  parent.appendChild(element);
+}
+
+
+
+const pop_news = async (currency) => {
+  let news_response = await axios.get(`https://newsapi.org/v2/everything?q=${my_coin}&language=${my_language}&from=${today}&sortBy=publishedAt&apiKey=${my_key}`)
+    .then(news_response => {
+      
+      //give credit to NewsAPI
+      source_2.innerText = `Data from NewsAPI.org \ud83d\udcf0`;
+      console.log(news_response.data.articles);
+
+      for (i = 0; i < news_response.data.articles.length; i++){
+       //make containers for every article
+        let news_block = document.createElement('div');
+        news_block.setAttribute('class', 'news_block');
+        news.appendChild(news_block);
+
+        let news_left = document.createElement('div');
+        news_left.setAttribute('class', 'news_left');
+        news_block.appendChild(news_left);
+
+        let news_right = document.createElement('div');
+        news_right.setAttribute('class', 'news_right');
+        news_block.appendChild(news_right);
+
+        //get data, create elements, and append them to the appropriate box
+        let article_img = news_response.data.articles[i].urlToImage;
+        create_news(news_left, 'img', 'news_image', '', article_img, '');
+
+        let article_title = news_response.data.articles[i].title;
+        create_news(news_right, 'h3', 'news_title', article_title, '', '');
+
+        let link_text = 'View Article Here';
+        let link = news_response.data.articles[i].url;
+        create_news(news_right, 'a', 'news_link', link_text, '', link);
+        
+        let news_description = news_response.data.articles[i].description;
+        create_news(news_right, 'h3', 'news_description', news_description, '', '');
+        
+        console.log(news_block);
+
+      }
+    
+     }
+    )
+}
+
+pop_news();
