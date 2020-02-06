@@ -4,6 +4,11 @@
   --text-color: black;
 }
 
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body *{
   margin: 0px;
   padding: 0px;
@@ -24,15 +29,15 @@ header {
   font-weight: normal;
 }
 
-#get_started {
+.get_started {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-h1{
-  font-size: 5em;
+h1 {
+  font-size: 100px;
   margin: 0;
   padding: 0;
   font-family: 'Molle', cursive;
@@ -51,13 +56,14 @@ main{
 }
 
 
-select{
-  /* width: 10em; */
+.dropdown{
+  width: 10em;
   background-color: var(--my-grey);
   text-align: center;
+  font-family: 'Changa', sans-serif;
 }
 
-#source{
+.source{
   display: block;
   text-align: right;
   padding: 1em;
@@ -74,13 +80,7 @@ select{
   padding: 0;
 }
 
-#crypto_gym{
-  height: 300px;
-  width: 400px;
-}
-
 ul{
-  height: 2000px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,6 +122,9 @@ news {
   flex-direction: column;
 }
 
+.page_link{
+  color: #94142b;
+}
 
 @media (max-width: 600px){
   header {
@@ -131,11 +134,11 @@ news {
     align-items: center;
   }
 
-  h1{
+  h1, .page_header{
     font-size: 3em;
   }
 
-  #get_started{
+  .get_started{
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -174,12 +177,11 @@ news {
     display: none;
   }
 
-  #source{
+  .source{
     padding: 0;
   }
 
   }
-
 
 
 /* News styles */
@@ -204,7 +206,7 @@ news {
   flex-flow: row unwrap;
   margin: 10px 0px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 
