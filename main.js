@@ -1,5 +1,4 @@
-const button = document.querySelector("button");
-const dropdown = document.querySelector("select");
+const dropdown = document.querySelector("#currencies");
 let selected_currency;
 const base_url = `https://api.coingecko.com/api/v3/coins`;
 const dashboard = document.querySelector('#dashboard');
@@ -96,8 +95,6 @@ let n = 0;
 //Fields populated for a given currency
 const pop_dashboard = async (currency) => {
 
-//code to remove all elements except the first one from all unordered lists
-
   let response = await axios.get(`${base_url}`)
     .then(response => {
     
@@ -165,5 +162,3 @@ dropdown.addEventListener('change', () => {
 }
   
 )
-
-
