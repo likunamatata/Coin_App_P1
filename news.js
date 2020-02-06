@@ -1,6 +1,6 @@
 //Choose a coin of interest for news
 const coin_dropdown = document.querySelector('#coins');
-const coin_list = ["Bitcoin", "Ethereum", "XRP", "Bitcoin Cash", "Bitcoin SV",
+const coin_list = ['Coins', "Bitcoin", "Ethereum", "XRP", "Bitcoin Cash", "Bitcoin SV",
   "Litecoin", "EOS", "Tether", "Binance Coin", "Cardano", "Tezos", "TRON", "Stellar",
   "Monero", "Ethereum Classic", "Dash", "OKB", "ChainLink", "IOTA", "NEO", "LEO Token",
   "Huobi Token", "Cosmos", "Crypto.com Coin", "Zcash", "Ontology", "NEM", "Maker", "VeChain",
