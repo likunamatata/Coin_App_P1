@@ -9,9 +9,11 @@ CoinGecko API :lizard:. Additional features include the ability to choose a curr
 To quickly check out what the app looks like, you can visit: https://likuna-dev.surge.sh/
 
 
-MVP: Coin Tracker
-Post-MVP: Coin News
-Post-Post-MVP: To fuel the options on the Coin News dropdown using the coin titles that come up in the CoinGecko API rather than the locked-in array of strings that I am using currently.
+* MVP: Coin Tracker
+
+* Post-MVP: Coin News
+
+* Post-Post-MVP: To fuel the options on the Coin News dropdown using the coin titles that come up in the CoinGecko API rather than the locked-in array of strings that I am using currently.
 
 
 
