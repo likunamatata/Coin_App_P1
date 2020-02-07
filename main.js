@@ -41,18 +41,6 @@ const make_ul = (field_list) => {
 make_ul(field_list);
 
 
-/*const make_headers = (field_titles) => {
-  for (let i = 0; i < field_titles.length; i++){
-    let title = document.createElement('a');
-    title.setAttribute('class', 'title');
-    title.innerHTML = `<a>${field_titles[i]}</a>`;
-    dashboard_titles.appendChild(title);
-  }
-}
-
-make_headers(field_titles);
-*/
-
 const logos = document.querySelector('#logos');
 const  names = document.querySelector('#names');
 const current_prices = document.querySelector('#current_prices');
