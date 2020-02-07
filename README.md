@@ -6,7 +6,7 @@ pages and organized the information in an easy to digest dashboard framework. Th
 CoinGecko API :lizard:. Additional features include the ability to choose a currency for populating dashboard prices with and also a second page where the user can read the news referencing a crypto coin of their interest. The articles on the second page are provided by NewsAPI :newspaper:.*
 
 
-To quickly check out what the app looks like, you can visit: https://likuna-dev.surge.sh/
+To quickly check out what the app looks like, you can visit https://likuna-dev.surge.sh/ or https://amazing-swartz-f88056.netlify.com/news.html
 
 
 * MVP: Coin Tracker
