@@ -257,6 +257,7 @@ news {
 .news_block{
   width: 100%;
   flex-flow: row wrap;
+  justify-content: center;
 }  
 
 .news_right{
